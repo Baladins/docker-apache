@@ -1,13 +1,6 @@
-FROM debian:jessie
+FROM alpine:3.4
 
-RUN echo "deb http://ftp.es.debian.org/debian stable main contrib non-free" > /etc/apt/sources.list
-RUN echo "deb-src http://ftp.es.debian.org/debian stable main contrib non-free" >> /etc/apt/sources.list
-RUN echo "deb http://ftp.debian.org/debian/ wheezy-updates main contrib non-free" >> /etc/apt/sources.list
-RUN echo "deb-src http://ftp.debian.org/debian/ wheezy-updates main contrib non-free" >> /etc/apt/sources.list
-RUN echo "deb http://security.debian.org/ wheezy/updates main contrib non-free" >> /etc/apt/sources.list
-RUN echo "deb-src http://security.debian.org/ wheezy/updates main contrib non-free" >> /etc/apt/sources.list
-
-RUN apt-get update && apt-get -y install apache2 && apt-get clean
+RUN apk update && apk add apache2
 
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
